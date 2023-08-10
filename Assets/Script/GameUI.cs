@@ -5,25 +5,22 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public Text textbun;
-    public string[] word;
+    public string[] word;//表示する文章
 
-    int num = 0;
-    private void Start()
+   
+    
+//テキストを変更
+    public void changetext(int wordnum)
     {
-        textbun.text = word[num];
-        changetext(word[1]);
-    }
-
-    public void changetext(string newtext)
-    {
-        Debug.Log("change");
-        textbun.text = newtext;
+        //Debug.Log("change");
+        textbun.text = word[wordnum];
         Invoke(nameof(ClearText),3f);
     }
 
+//テキストを初期化
     public void ClearText()
     {
-        Debug.Log("Clear");
+        //Debug.Log("Clear");
         textbun.text = "";
     }
  }

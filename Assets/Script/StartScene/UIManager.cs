@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text text2;
     public GameObject buttonGameObject;
     private bool text1Faded = false; // フラグ
-    private bool text2Faded = false; // フラグ
+    //private bool text2Faded = false; // フラグ
     
     [SerializeField] SceneChange scenechange;
 //スタートボタンをクリックすると暗転
