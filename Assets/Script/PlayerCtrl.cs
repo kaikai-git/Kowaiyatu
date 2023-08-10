@@ -84,6 +84,7 @@ public class PlayerCtrl : MonoBehaviour
         // }
     }
 
+     //カーソルロック
     public void UpdateCursorLock()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -97,8 +98,8 @@ public class PlayerCtrl : MonoBehaviour
 
         if (cursorLock)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {

@@ -10,7 +10,7 @@ public class AreaHit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             IsHit = true;
-            Debug.Log("hit");
+            
         }
     }
 }
