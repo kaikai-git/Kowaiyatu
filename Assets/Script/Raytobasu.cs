@@ -30,8 +30,8 @@ public class Raytobasu : MonoBehaviour
                 {
                     Debug.Log(clickedObject.name);
                     Item itemComponent = clickedObject.GetComponent<Item>(); // Itemコンポーネントを取得
-                   itemComponent.test();
-                     Destroy(clickedObject);
+                    itemComponent.test();
+                     //Destroy(clickedObject);
                 }
             }
 

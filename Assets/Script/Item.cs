@@ -8,15 +8,16 @@ public class Item : MonoBehaviour
     {
         Key,
         Magatama,
-        Sowrd,
+        Sword,
         Ohuda,
     }
      
      public Type type;
      
 
+//所得したアイテムを格納してActiveFalse
      public void test()
      {
-        Debug.Log("2iine");
+        gameObject.SetActive(false);
      }
 }
