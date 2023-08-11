@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,8 +230,8 @@ GameObject:
   - component: {fileID: 191563923}
   - component: {fileID: 191563922}
   - component: {fileID: 191563921}
-  m_Layer: 0
-  m_Name: Item
+  m_Layer: 6
+  m_Name: Magatama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a779086ed44c94c980feb57c86ff9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!65 &191563922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1248,6 +1249,8 @@ GameObject:
   - component: {fileID: 1532247433}
   - component: {fileID: 1532247432}
   - component: {fileID: 1532247431}
+  - component: {fileID: 1532247434}
+  - component: {fileID: 1532247435}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1321,6 +1324,34 @@ Transform:
   m_Father: {fileID: 1924100455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1532247434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532247430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 10
+--- !u!114 &1532247435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532247430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c86c476214069b4a8a67096ae03eb06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1924100450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1553,7 @@ Canvas:
   m_GameObject: {fileID: 1980049032}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1532247432}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

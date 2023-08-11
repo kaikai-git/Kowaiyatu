@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Type
     {
-        
+        Key,
+        Magatama,
+        Sowrd,
+        Ohuda,
     }
+     
+     public Type type;
+     
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+     public void test()
+     {
+        Debug.Log("2iine");
+     }
 }
