@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-   
+   [SerializeField] GameObject PauseCanvas;
+   [SerializeField] GameObject KaityuDentou;
     float x, z;
     public float speed = 0.1f;
-  
+    bool IsPause; //ポーズ判定
+    bool flashlightOn = false; // 懐中電灯の状態を記録する変数
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     float Xsensityvity = 2.5f, Ysensityvity = 0.3f;
@@ -21,7 +23,9 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         cameraRot = cam.transform.localRotation;
+        
         characterRot = transform.localRotation;
+         
     }
 
     // Update is called once per frame
@@ -33,14 +37,17 @@ public class PlayerCtrl : MonoBehaviour
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         characterRot *= Quaternion.Euler(0, xRot, 0);
 
-        cameraRot = ClampRotation(cameraRot);
+        cameraRot = 
+        (cameraRot);
 
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
         RotatePlayer();
         UpdateCursorLock();
-
+        Kaityudentou();
+        pause();
+        
         // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         // {
         //     isWalking = true;
@@ -124,5 +131,38 @@ public class PlayerCtrl : MonoBehaviour
         return q;
     }
 
+    void Kaityudentou()
+    {
+        // Fキーが押されたら懐中電灯の表示/非表示を切り替える
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            flashlightOn = !flashlightOn; // 状態を反転させる
+            KaityuDentou.SetActive(flashlightOn); // 状態に基づいて懐中電灯を表示/非表示にする
+        }
+        // 懐中電灯の位置をカメラの位置に合わせる
+        if (KaityuDentou != null)
+        {
+            KaityuDentou.transform.position = cam.transform.position;
+            KaityuDentou.transform.rotation = cam.transform.rotation;
+        }
+    }
+
+    public void pause()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && IsPause == false)
+        {
+           
+            IsPause = true;
+            Time.timeScale = 0;
+            PauseCanvas.SetActive(true);
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
+        {
+            IsPause = false;
+            Time.timeScale = 1;
+            PauseCanvas.SetActive(false);
+        }
+    }
    
 }

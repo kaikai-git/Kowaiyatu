@@ -16,8 +16,11 @@ public class Item : MonoBehaviour
      
 
 //所得したアイテムを格納してActiveFalse
-     public void test()
+     public void ClickedItem()
      {
         gameObject.SetActive(false);
+
+        ItemBox.instance.SetItem(type);
+
      }
 }
