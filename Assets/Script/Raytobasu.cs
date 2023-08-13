@@ -6,6 +6,7 @@ public class Raytobasu : MonoBehaviour
 {
    [SerializeField] Image pointer;
    [SerializeField] Image pointer2;
+   
    // Update is called once per frame
    void Update()
    {
@@ -35,10 +36,11 @@ public class Raytobasu : MonoBehaviour
             //レイヤー探索
             if ( hit.collider.gameObject.layer == LayerMask.NameToLayer("UseItem") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
+                Debug.Log("Item");
                  //クリックできるものに標準がある場合pointer2表示,pointer1非表示
                  pointer.enabled = false;    
                  pointer2.enabled = true;
-                 Debug.Log("use?");
+                 //Debug.Log("use?");
                     //マウスをクリックした場合アイテム取得
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -47,16 +49,21 @@ public class Raytobasu : MonoBehaviour
                         {
                             Debug.Log(clickedObject.name);
                             Item itemComponent = clickedObject.GetComponent<Item>(); // Itemコンポーネントを取得
+                            
                             itemComponent.ClickedItem();
                             //Destroy(clickedObject);
                         }    
                         else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UseItem"))
                         {
-                            Debug.Log("use?");
-                            ItemwoTuaku itemComponent = clickedObject.GetComponent<ItemwoTuaku>(); // Itemコンポーネントを取得
+                            //Debug.Log("use?");
+                            UsedItem itemComponent = clickedObject.GetComponent<UsedItem>(); // Itemコンポーネントを取得
                             itemComponent.UseItem();
                         }       
                     }                   
+            }
+            else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                Debug.Log("UI");
             }
             else
             {

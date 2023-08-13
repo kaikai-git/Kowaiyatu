@@ -25,7 +25,8 @@ public class PlayerCtrl : MonoBehaviour
         cameraRot = cam.transform.localRotation;
         
         characterRot = transform.localRotation;
-         
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -37,16 +38,16 @@ public class PlayerCtrl : MonoBehaviour
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         characterRot *= Quaternion.Euler(0, xRot, 0);
 
-        cameraRot = 
-        (cameraRot);
+        cameraRot = ClampRotation(cameraRot);
 
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
-        RotatePlayer();
-        UpdateCursorLock();
-        Kaityudentou();
         pause();
+        RotatePlayer();
+        //UpdateCursorLock();
+        Kaityudentou();
+        
         
         // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         // {
@@ -94,6 +95,7 @@ public class PlayerCtrl : MonoBehaviour
      //カーソルロック
     public void UpdateCursorLock()
     {
+        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             cursorLock = false;
@@ -102,7 +104,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             cursorLock = true;
         }
-
+        //カーソルを中心に固定、視覚化
         if (cursorLock)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -149,9 +151,13 @@ public class PlayerCtrl : MonoBehaviour
 
     public void pause()
     {
+        
         if (Input.GetKeyDown(KeyCode.E) && IsPause == false)
         {
-           
+            
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
             IsPause = true;
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
@@ -159,6 +165,9 @@ public class PlayerCtrl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             IsPause = false;
             Time.timeScale = 1;
             PauseCanvas.SetActive(false);

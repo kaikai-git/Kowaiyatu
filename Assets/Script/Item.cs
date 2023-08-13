@@ -18,8 +18,11 @@ public class Item : MonoBehaviour
 //所得したアイテムを格納してActiveFalse
      public void ClickedItem()
      {
+        
         gameObject.SetActive(false);
-
+        Debug.Log(type+"を取得");
+        Bunsyou.instance.changetext(1);
+        //changetext(int wordnum);  
         ItemBox.instance.SetItem(type);
 
      }
