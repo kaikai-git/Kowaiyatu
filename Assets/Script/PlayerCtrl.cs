@@ -154,7 +154,7 @@ public class PlayerCtrl : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E) && IsPause == false)
         {
-            
+            cam.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
@@ -165,6 +165,7 @@ public class PlayerCtrl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
         {
+             cam.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
