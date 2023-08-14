@@ -18,6 +18,8 @@ public class GameMaster : MonoBehaviour
 
     void Update()
     {
+
+        stageGimmick.IsHit();
         
         // if(stageGimmick.Flags[0] && !CalledOnce[0])
         // {

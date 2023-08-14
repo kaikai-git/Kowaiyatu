@@ -16,11 +16,41 @@ public class Choice : MonoBehaviour
    }
 
    //Yesボタンを押したらアイテム取得
-   public void Yes()
+   public void SwordYesPush()
    {
+    //アイテムを使った時の処理をここに書く
+     
     
-     Debug.Log("Yes");
+     UsedItem.instance.UseItemSword();
+    
+     gameObject.SetActive(false);
+     Time.timeScale = 1;   
+     Cursor.lockState = CursorLockMode.Locked;
+     Cursor.visible = false;
+     
+   }
+   public void KeyYesPush()
+   {
+    //アイテムを使った時の処理をここに書く
+     
+     UsedItem.instance.UseItemKey();
+     
+    
+     gameObject.SetActive(false);
+     Time.timeScale = 1;   
+     Cursor.lockState = CursorLockMode.Locked;
+     Cursor.visible = false;
+     
    }
 
-   //Noボタンを押したらキャンセル
+   //Noボタンを押したらアイテムを取得せずキャンセル
+   public void NoPush()
+   {
+    
+     
+     gameObject.SetActive(false);
+     Time.timeScale = 1;   
+     Cursor.lockState = CursorLockMode.Locked;
+     Cursor.visible = false;
+   }
 }

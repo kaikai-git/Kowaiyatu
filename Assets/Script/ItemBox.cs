@@ -21,28 +21,22 @@ public class ItemBox : MonoBehaviour
         if(type == Item.Type.Key)
         {
             
-            
             box0.SetActive(true);
             
         }
          if(type == Item.Type.Ohuda)
-        {
-            
-            
-            box1.SetActive(true);
-            
+        {        
+            box1.SetActive(true);        
         }
          if(type == Item.Type.Sword)
         {
-            
-            
+                        
             box2.SetActive(true);
             
         }
          if(type == Item.Type.Magatama)
         {
-            
-            
+                       
             box3.SetActive(true);
             
         }

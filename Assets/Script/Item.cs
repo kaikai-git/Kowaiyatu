@@ -21,7 +21,24 @@ public class Item : MonoBehaviour
         
         gameObject.SetActive(false);
         Debug.Log(type+"を取得");
-        Bunsyou.instance.changetext(1);
+
+        //タイプごとに異なった文章を表示
+        if(type == Type.Magatama)
+        {
+             Bunsyou.instance.changetext(0);
+        }
+        else if(type == Type.Ohuda)
+        {
+             Bunsyou.instance.changetext(1);
+        }
+        else if(type == Type.Sword)
+        {
+             Bunsyou.instance.changetext(2);
+        }
+        else if(type == Type.Key)
+        {
+             Bunsyou.instance.changetext(3);
+        }
         //changetext(int wordnum);  
         ItemBox.instance.SetItem(type);
 

@@ -17,10 +17,7 @@ public class StageGimmick : MonoBehaviour
         
     }
 
-    void Update()
-    {
-        IsHit();
-    }
+ 
     public void IsHit()
     {      
        
@@ -29,12 +26,20 @@ public class StageGimmick : MonoBehaviour
              Debug.Log("hit1");
             flags[0] = true;
             CalledOnce[0] = true;
+            Bunsyou.instance.changetext(3);
          }
          else if( Area[1].IsHit == true && !CalledOnce[1]) 
          {
              Debug.Log("hit1");
             flags[1] = true;
             CalledOnce[1] = true;
+            Bunsyou.instance.changetext(4);
+         }
+         else if( Area[2].IsHit == true && !CalledOnce[2]) 
+         {
+             Debug.Log("hit1");
+            flags[2] = true;
+            CalledOnce[2] = true;
          }
           
     }

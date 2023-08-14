@@ -7,11 +7,11 @@ public class Raytobasu : MonoBehaviour
    [SerializeField] Image pointer;
    [SerializeField] Image pointer2;
    
+   [SerializeField] GameObject keyChoicePanel;
+   [SerializeField] GameObject swordChoicePanel;
    // Update is called once per frame
    void Update()
-   {
-    
-        
+   {       
      Raywotobasu();
  
    }
@@ -36,7 +36,7 @@ public class Raytobasu : MonoBehaviour
             //レイヤー探索
             if ( hit.collider.gameObject.layer == LayerMask.NameToLayer("UseItem") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
-                Debug.Log("Item");
+                //Debug.Log("Item");
                  //クリックできるものに標準がある場合pointer2表示,pointer1非表示
                  pointer.enabled = false;    
                  pointer2.enabled = true;
@@ -44,27 +44,57 @@ public class Raytobasu : MonoBehaviour
                     //マウスをクリックした場合アイテム取得
                     if (Input.GetMouseButtonDown(0))
                     {
-                        
+                        //アイテムをクリックした際の処理
                         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
                         {
-                            Debug.Log(clickedObject.name);
+                            //Debug.Log(clickedObject.name);
                             Item itemComponent = clickedObject.GetComponent<Item>(); // Itemコンポーネントを取得
                             
                             itemComponent.ClickedItem();
                             //Destroy(clickedObject);
                         }    
+                        //アイテムを使うオブジェクトをクリックした際の処理
                         else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UseItem"))
                         {
-                            //Debug.Log("use?");
-                            UsedItem itemComponent = clickedObject.GetComponent<UsedItem>(); // Itemコンポーネントを取得
-                            itemComponent.UseItem();
+                            
+                            bool hasKey = ItemBox.instance.CanUseItem(Item.Type.Key); 
+                            bool hasSword = ItemBox.instance.CanUseItem(Item.Type.Sword); 
+                            if (hit.collider.gameObject.CompareTag("UsedKey"))
+                            {
+                                //テキスト表示
+                                Bunsyou.instance.changetext(6);
+
+                                if(hasKey == true)
+                                {
+                                     Bunsyou.instance.ClearText();
+                                    keyChoicePanel.SetActive(true);
+                                    Time.timeScale = 0;   
+                                    Cursor.lockState = CursorLockMode.Confined;
+                                    Cursor.visible = true;
+                                }
+                
+                            }
+                            else if (hit.collider.gameObject.CompareTag("UsedSword"))
+                            {
+                                //テキスト表示
+                                Bunsyou.instance.changetext(5);
+
+                                if(hasSword == true)
+                                {
+                                     Bunsyou.instance.ClearText();
+                                    swordChoicePanel.SetActive(true); 
+                                    Time.timeScale = 0;   
+                                    Cursor.lockState = CursorLockMode.Confined;
+                                    Cursor.visible = true;
+                                }
+                            }      
                         }       
                     }                   
             }
-            else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
-            {
-                Debug.Log("UI");
-            }
+            // else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
+            // {
+            //     Debug.Log("UI");
+            // }
             else
             {
                 //クリックできるものに標準がない場合pointer1表示,pointer2非表示

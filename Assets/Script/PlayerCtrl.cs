@@ -47,7 +47,7 @@ public class PlayerCtrl : MonoBehaviour
         RotatePlayer();
         //UpdateCursorLock();
         Kaityudentou();
-        
+        Choice();
         
         // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         // {
@@ -172,6 +172,14 @@ public class PlayerCtrl : MonoBehaviour
             IsPause = false;
             Time.timeScale = 1;
             PauseCanvas.SetActive(false);
+        }
+    }
+
+    public void Choice()
+    {
+         if (Input.GetKeyDown(KeyCode.Q) )
+        {
+            Xsensityvity = 0;
         }
     }
    
