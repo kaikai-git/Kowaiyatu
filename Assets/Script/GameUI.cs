@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     
-    [SerializeField] Choice choice;
+    [SerializeField] Choice keychoice;
+    [SerializeField] Choice swordchoice;
     //[SerializeField] Raytobasu raytobase;
    
     

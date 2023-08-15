@@ -20,18 +20,17 @@ public class GameMaster : MonoBehaviour
     {
 
         stageGimmick.IsHit();
-        
-        // if(stageGimmick.Flags[0] && !CalledOnce[0])
-        // {
-        //     gameUi.changetext(0);
-        //     CalledOnce[0] = true;
-        // }
-        // else if(stageGimmick.Flags[1] && !CalledOnce[1])
-        // {
-        //     gameUi.changetext(1);
-        //     CalledOnce[1] = true;
-        // }
 
+
+        raytobasu.Raywotobasu();
+        
+        // if(raytobasu.IsChoiced)
+        // {
+        //     //カーソル固定
+        //     playerctrl.Choice();
+        // }
+        
+        
     }
 
 

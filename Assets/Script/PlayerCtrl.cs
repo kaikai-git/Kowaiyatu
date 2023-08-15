@@ -6,13 +6,15 @@ public class PlayerCtrl : MonoBehaviour
 {
    [SerializeField] GameObject PauseCanvas;
    [SerializeField] GameObject KaityuDentou;
+
+   
     float x, z;
     public float speed = 0.1f;
     bool IsPause; //ポーズ判定
     bool flashlightOn = false; // 懐中電灯の状態を記録する変数
     public GameObject cam;
     Quaternion cameraRot, characterRot;
-    float Xsensityvity = 2.5f, Ysensityvity = 0.3f;
+    public float Xsensityvity = 2.5f, Ysensityvity = 0.3f;
     float RotateSpeed = 170f;
     bool cursorLock = true;
 
@@ -47,7 +49,7 @@ public class PlayerCtrl : MonoBehaviour
         RotatePlayer();
         //UpdateCursorLock();
         Kaityudentou();
-        Choice();
+       
         
         // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         // {
@@ -177,10 +179,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Choice()
     {
-         if (Input.GetKeyDown(KeyCode.Q) )
-        {
-            Xsensityvity = 0;
-        }
+        Xsensityvity = 0f;
+        Ysensityvity = 0f;
     }
    
 }
