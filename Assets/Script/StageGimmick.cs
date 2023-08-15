@@ -26,6 +26,7 @@ public class StageGimmick : MonoBehaviour
              Debug.Log("hit1");
             flags[0] = true;
             CalledOnce[0] = true;
+            Camera.main.gameObject.GetComponent<ShakeCamera>().Shake();
             Bunsyou.instance.changetext(3);
          }
          else if( Area[1].IsHit == true && !CalledOnce[1]) 
