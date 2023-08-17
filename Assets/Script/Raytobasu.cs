@@ -15,8 +15,17 @@ public class Raytobasu : MonoBehaviour
 
    public bool IsChoiced;
 
+
+   public void Update()
+   {
+     Raywotobasu();
+     
+     //Debug.Log(PlayerCtrl.CamMoveCtrl);
+   }
+
     public void Raywotobasu()
     {
+        //PlayerCtrl.CamMoveCtrl = 0;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         float distance = 10;
@@ -26,6 +35,7 @@ public class Raytobasu : MonoBehaviour
 
         if (hit.collider != null)
         {
+            //PlayerCtrl.CamMoveCtrl = 0;
             GameObject clickedObject = hit.collider.gameObject;
             LayerMask hitLayer = hit.collider.gameObject.layer;
 
@@ -33,6 +43,7 @@ public class Raytobasu : MonoBehaviour
                 hitLayer == LayerMask.NameToLayer("Item") || 
                 hitLayer == LayerMask.NameToLayer("CheakItem"))
             {
+                //PlayerCtrl.CamMoveCtrl = 0;
                 HandleClickableObject(hitLayer, clickedObject);
             }
             else
@@ -55,6 +66,7 @@ public class Raytobasu : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+           
             if (hitLayer == LayerMask.NameToLayer("Item"))
             {
                 Item itemComponent = clickedObject.GetComponent<Item>();
@@ -62,11 +74,16 @@ public class Raytobasu : MonoBehaviour
             }
             else if (hitLayer == LayerMask.NameToLayer("CheakItem"))
             {
+                GameMaster.check = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 check.CheckTegami();
-                Debug.Log("手紙を読む");
+                //check.CheckTegami();
+                Debug.Log(GameMaster.check);
             }
             else if (hitLayer == LayerMask.NameToLayer("UseItem"))
             {
+                
                 bool hasKey = ItemBox.instance.CanUseItem(Item.Type.Key);
                 bool hasSword = ItemBox.instance.CanUseItem(Item.Type.Sword);
 
@@ -78,9 +95,10 @@ public class Raytobasu : MonoBehaviour
                     if (hasKey)
                     {
                         //IsChoiced = true;
-                        Bunsyou.instance.ClearText();
-                        keyChoicePanel.SetActive(true);
-                        Time.timeScale = 0;
+                        PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                        Bunsyou.instance.ClearText();//テキスト消す
+                        keyChoicePanel.SetActive(true);//パネル表示
+                        Time.timeScale = 0;//停止
                         Cursor.lockState = CursorLockMode.Confined;
                         Cursor.visible = true;
                     }
@@ -92,6 +110,8 @@ public class Raytobasu : MonoBehaviour
                     if (hasSword)
                     {
                         //IsChoiced = true;
+                        Debug.Log("実行");
+                        PlayerCtrl.CamMoveCtrl = 0;//画面固定
                         Bunsyou.instance.ClearText();
                         swordChoicePanel.SetActive(true);
                         Time.timeScale = 0;

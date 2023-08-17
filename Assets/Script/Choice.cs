@@ -20,7 +20,7 @@ public class Choice : MonoBehaviour
    {
     //アイテムを使った時の処理をここに書く
      
-    
+     PlayerCtrl.CamMoveCtrl = 1;//画面
      UsedItem.instance.UseItemSword();
     
      gameObject.SetActive(false);
@@ -33,6 +33,7 @@ public class Choice : MonoBehaviour
    {
     //アイテムを使った時の処理をここに書く
      
+      PlayerCtrl.CamMoveCtrl = 1;//画面
      UsedItem.instance.UseItemKey();
      
     
@@ -47,7 +48,7 @@ public class Choice : MonoBehaviour
    public void NoPush()
    {
     
-     
+      PlayerCtrl.CamMoveCtrl = 1;//画面
      gameObject.SetActive(false);
      Time.timeScale = 1;   
      Cursor.lockState = CursorLockMode.Locked;

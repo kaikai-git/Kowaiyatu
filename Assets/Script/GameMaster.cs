@@ -8,8 +8,14 @@ public class GameMaster : MonoBehaviour
     [SerializeField] GameUI gameUi;
     [SerializeField] PlayerCtrl playerctrl;
     [SerializeField] Raytobasu raytobasu;
+    [SerializeField] GameObject tegamipanel;
+
 
      bool[] CalledOnce = new bool[3];
+
+     
+//手紙を読んでいるかどうかの変数
+     public static bool check = false;
     private void Start()
     {
          //gameUi.changetext(1);
@@ -22,7 +28,12 @@ public class GameMaster : MonoBehaviour
         stageGimmick.IsHit();
 
 
-        raytobasu.Raywotobasu();
+        if(check == false)
+        {
+            //手紙パネル消滅
+            tegamipanel.SetActive(false);
+        }
+        //raytobasu.Raywotobasu();
         
         // if(raytobasu.IsChoiced)
         // {

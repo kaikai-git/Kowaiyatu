@@ -18,6 +18,7 @@ public class PlayerCtrl : MonoBehaviour
     float RotateSpeed = 170f;
     bool cursorLock = true;
 
+    public static int CamMoveCtrl; //カメラ回転を止めるための変数
     float minX = -90f, maxX = 90f;
     //bool isWalking = false;
 
@@ -25,17 +26,18 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         cameraRot = cam.transform.localRotation;
-        
+        CamMoveCtrl = 1;
         characterRot = transform.localRotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
-        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
+        float xRot = Input.GetAxis("Mouse X") * Ysensityvity * CamMoveCtrl;
+        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity * CamMoveCtrl;
 
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         characterRot *= Quaternion.Euler(0, xRot, 0);
@@ -45,7 +47,12 @@ public class PlayerCtrl : MonoBehaviour
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
-        pause();
+
+///うごいてるときだけ
+        
+             pause();
+        
+       
         RotatePlayer();
         //UpdateCursorLock();
         Kaityudentou();
@@ -153,9 +160,10 @@ public class PlayerCtrl : MonoBehaviour
 
     public void pause()
     {
-        
-        if (Input.GetKeyDown(KeyCode.E) && IsPause == false)
+        //とまってる
+        if (Input.GetKeyDown(KeyCode.E) && IsPause == false && Time.timeScale == 1)
         {
+           
             cam.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -167,6 +175,7 @@ public class PlayerCtrl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
         {
+            
              cam.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -177,10 +186,6 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void Choice()
-    {
-        Xsensityvity = 0f;
-        Ysensityvity = 0f;
-    }
+  
    
 }
