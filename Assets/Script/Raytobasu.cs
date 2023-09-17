@@ -19,7 +19,7 @@ public class Raytobasu : MonoBehaviour
    public void Update()
    {
      Raywotobasu();
-     
+    
      //Debug.Log(PlayerCtrl.CamMoveCtrl);
    }
 
@@ -28,11 +28,12 @@ public class Raytobasu : MonoBehaviour
         //PlayerCtrl.CamMoveCtrl = 0;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        float distance = 10;
+        float distance = 2;
         float duration = 0;
         Physics.Raycast(ray, out hit, distance);
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, duration, false);
-
+        // string objectName = hit.collider.gameObject.name;
+        // Debug.Log(objectName);
         if (hit.collider != null)
         {
             //PlayerCtrl.CamMoveCtrl = 0;
@@ -74,12 +75,41 @@ public class Raytobasu : MonoBehaviour
             }
             else if (hitLayer == LayerMask.NameToLayer("CheakItem"))
             {
-                GameMaster.check = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-                check.CheckTegami();
-                //check.CheckTegami();
-                Debug.Log(GameMaster.check);
+                string objTag = clickedObject.tag;
+
+                switch(objTag)
+            {
+                case "tegami":
+                    GameMaster.check = true;
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
+                    check.CheckTegami();
+                    Debug.Log(GameMaster.check);
+                    break;
+                case "Tabibito":
+                Bunsyou.instance.changetext(7);
+                break;
+                case "KeyDore":
+                Bunsyou.instance.changetext(8);
+                break;
+                // case "KeyWall1":
+                // Bunsyou.instance.changetext(9);
+                // break;
+                // case "KeyWall1":
+                // opendoreAnim.SetTrigger("open");
+                // break;
+                // 他のオブジェクトの処理をここに追加
+                case "Fusuma":
+                    Debug.Log("Open");
+                    Fusuma fusumaComponent = clickedObject.GetComponent<Fusuma>();
+                    if (fusumaComponent != null)
+                    {
+                       
+                        fusumaComponent.AnimateFusuma();
+                    }
+                    break;
+            }
+                
             }
             else if (hitLayer == LayerMask.NameToLayer("UseItem"))
             {

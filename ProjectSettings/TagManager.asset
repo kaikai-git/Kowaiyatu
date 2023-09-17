@@ -8,6 +8,10 @@ TagManager:
   - ItemImage
   - UsedSword
   - UsedKey
+  - tegami
+  - Tabibito
+  - KeyDore
+  - Fusuma
   layers:
   - Default
   - TransparentFX
