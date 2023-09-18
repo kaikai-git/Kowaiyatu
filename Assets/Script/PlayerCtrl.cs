@@ -22,9 +22,13 @@ public class PlayerCtrl : MonoBehaviour
     float minX = -90f, maxX = 90f;
     //bool isWalking = false;
 
+    public AudioClip sound1;
+    public AudioClip sound2;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         cameraRot = cam.transform.localRotation;
         CamMoveCtrl = 1;
         characterRot = transform.localRotation;
@@ -147,6 +151,7 @@ public class PlayerCtrl : MonoBehaviour
         // Fキーが押されたら懐中電灯の表示/非表示を切り替える
         if (Input.GetKeyDown(KeyCode.F))
         {
+             audioSource.PlayOneShot(sound1);
             flashlightOn = !flashlightOn; // 状態を反転させる
             KaityuDentou.SetActive(flashlightOn); // 状態に基づいて懐中電灯を表示/非表示にする
         }
@@ -171,6 +176,7 @@ public class PlayerCtrl : MonoBehaviour
             IsPause = true;
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
+            audioSource.PlayOneShot(sound2);
             
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
