@@ -7,6 +7,11 @@ public class PlayerCtrl : MonoBehaviour
    [SerializeField] GameObject PauseCanvas;
    [SerializeField] GameObject KaityuDentou;
 
+   public AudioClip LightOnOff;
+    public AudioClip Suzu;
+    
+    [SerializeField] private AudioSource audioSourceFootSE;
+    [SerializeField] private AudioSource audioSource;
    
     float x, z;
     public float speed = 0.1f;
@@ -18,23 +23,23 @@ public class PlayerCtrl : MonoBehaviour
     float RotateSpeed = 170f;
     bool cursorLock = true;
 
+    bool isWalking = false;
+
     public static int CamMoveCtrl; //カメラ回転を止めるための変数
     float minX = -90f, maxX = 90f;
     //bool isWalking = false;
 
-    public AudioClip sound1;
-    public AudioClip sound2;
-    AudioSource audioSource;
+    
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // audioSourceFootSE = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
         cameraRot = cam.transform.localRotation;
         CamMoveCtrl = 1;
         characterRot = transform.localRotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
     }
 
     // Update is called once per frame
@@ -51,27 +56,23 @@ public class PlayerCtrl : MonoBehaviour
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
-
-///うごいてるときだけ
+        ///うごいてるときだけ
         
              pause();
-        
-       
+              
         RotatePlayer();
         //UpdateCursorLock();
         Kaityudentou();
        
         
-        // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        // {
-        //     isWalking = true;
-        // }
-        // else
-        // {
-        //     isWalking = false;
-        // }
-
-        
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }  
     }
 
     void RotatePlayer()
@@ -94,15 +95,15 @@ public class PlayerCtrl : MonoBehaviour
 
             transform.position += moveDirection * speed;
 
-            // if (isWalking && !footstepSound.isPlaying)
-            // {
-            //     footstepSound.Play();
-            // }
+            if (isWalking && !audioSourceFootSE.isPlaying)
+            {
+                audioSourceFootSE.Play();
+            }
         }
-        // else
-        // {
-        //     footstepSound.Stop();
-        // }
+        else
+        {
+           audioSourceFootSE.Stop();
+        }
     }
 
      //カーソルロック
@@ -148,10 +149,11 @@ public class PlayerCtrl : MonoBehaviour
 
     void Kaityudentou()
     {
+       
         // Fキーが押されたら懐中電灯の表示/非表示を切り替える
         if (Input.GetKeyDown(KeyCode.F))
         {
-             audioSource.PlayOneShot(sound1);
+             audioSource.PlayOneShot(LightOnOff);
             flashlightOn = !flashlightOn; // 状態を反転させる
             KaityuDentou.SetActive(flashlightOn); // 状態に基づいて懐中電灯を表示/非表示にする
         }
@@ -176,7 +178,7 @@ public class PlayerCtrl : MonoBehaviour
             IsPause = true;
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
-            audioSource.PlayOneShot(sound2);
+            audioSource.PlayOneShot(Suzu);
             
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
@@ -191,7 +193,4 @@ public class PlayerCtrl : MonoBehaviour
             PauseCanvas.SetActive(false);
         }
     }
-
-  
-   
 }
