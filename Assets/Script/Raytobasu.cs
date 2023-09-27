@@ -13,7 +13,7 @@ public class Raytobasu : MonoBehaviour
 
    
 
-   public bool IsChoiced;
+  // public bool IsChoiced;
 
 
    public void Update()
@@ -108,6 +108,25 @@ public class Raytobasu : MonoBehaviour
                         fusumaComponent.AnimateFusuma();
                     }
                     break;
+                 case "KakusiDore":
+                    Debug.Log("Open");
+                    Gimmick KakusiDorecomponent = clickedObject.GetComponent<Gimmick>();
+                    if (KakusiDorecomponent != null)
+                    {
+                       
+                        KakusiDorecomponent.KakusiDore();
+                    }
+                    break;    
+                
+                case "Tansu":
+                    Debug.Log("Open");
+                    Gimmick Tansucomponent = clickedObject.GetComponent<Gimmick>();
+                    if (Tansucomponent != null)
+                    {
+                       
+                        Tansucomponent.Tansu();
+                    }
+                    break;    
             }
                 
             }
@@ -117,38 +136,75 @@ public class Raytobasu : MonoBehaviour
                 bool hasKey = ItemBox.instance.CanUseItem(Item.Type.Key);
                 bool hasSword = ItemBox.instance.CanUseItem(Item.Type.Sword);
 
-                if (clickedObject.CompareTag("UsedKey"))
+                ObjID objID = clickedObject.GetComponent<ObjID>();
+                int rayHitID = objID.ID;
+            //0鍵1刀
+                switch(rayHitID)
                 {
-                    
-                    Bunsyou.instance.changetext(6);
-
+                    case 0:
+                    Debug.Log("0");
                     if (hasKey)
-                    {
-                        //IsChoiced = true;
-                        PlayerCtrl.CamMoveCtrl = 0;//画面固定
-                        Bunsyou.instance.ClearText();//テキスト消す
-                        keyChoicePanel.SetActive(true);//パネル表示
-                        Time.timeScale = 0;//停止
-                        Cursor.lockState = CursorLockMode.Confined;
-                        Cursor.visible = true;
-                    }
-                }
-                else if (clickedObject.CompareTag("UsedSword"))
-                {
-                    Bunsyou.instance.changetext(5);
-
+                        {
+                            //パネルのデザインを変える処理
+                            //IsChoiced = true;
+                            PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                            Bunsyou.instance.ClearText();//テキスト消す
+                            keyChoicePanel.SetActive(true);//パネル表示
+                            Time.timeScale = 0;//停止
+                            Cursor.lockState = CursorLockMode.Confined;
+                            Cursor.visible = true;
+                        }
+                    break;
+                    case 1:
+                    Debug.Log("1");
                     if (hasSword)
-                    {
-                        //IsChoiced = true;
-                        Debug.Log("実行");
-                        PlayerCtrl.CamMoveCtrl = 0;//画面固定
-                        Bunsyou.instance.ClearText();
-                        swordChoicePanel.SetActive(true);
-                        Time.timeScale = 0;
-                        Cursor.lockState = CursorLockMode.Confined;
-                        Cursor.visible = true;
-                    }
+                        {
+                            //IsChoiced = true;
+                            
+                            PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                            Bunsyou.instance.ClearText();
+                            swordChoicePanel.SetActive(true);
+                            Time.timeScale = 0;
+                            Cursor.lockState = CursorLockMode.Confined;
+                            Cursor.visible = true;
+                        }
+                
+                    break;
                 }
+                //パネルを開く処理
+
+                // if (clickedObject.CompareTag("UsedKey"))
+                // {
+                    
+                //     Bunsyou.instance.changetext(6);
+
+                //     if (hasKey)
+                //     {
+                //         //IsChoiced = true;
+                //         PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                //         Bunsyou.instance.ClearText();//テキスト消す
+                //         keyChoicePanel.SetActive(true);//パネル表示
+                //         Time.timeScale = 0;//停止
+                //         Cursor.lockState = CursorLockMode.Confined;
+                //         Cursor.visible = true;
+                //     }
+                // }
+                // else if (clickedObject.CompareTag("UsedSword"))
+                // {
+                //     Bunsyou.instance.changetext(5);
+
+                //     if (hasSword)
+                //     {
+                //         //IsChoiced = true;
+                //         Debug.Log("実行");
+                //         PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                //         Bunsyou.instance.ClearText();
+                //         swordChoicePanel.SetActive(true);
+                //         Time.timeScale = 0;
+                //         Cursor.lockState = CursorLockMode.Confined;
+                //         Cursor.visible = true;
+                //     }
+                // }
             }
         }
     }
