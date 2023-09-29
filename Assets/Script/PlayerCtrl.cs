@@ -175,10 +175,11 @@ public class PlayerCtrl : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
+            audioSource.PlayOneShot(Suzu);
             IsPause = true;
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
-            audioSource.PlayOneShot(Suzu);
+            
             
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)

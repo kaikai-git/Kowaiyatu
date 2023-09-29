@@ -10,9 +10,11 @@ public class GameMaster : MonoBehaviour
     [SerializeField] Raytobasu raytobasu;
     [SerializeField] GameObject tegamipanel;
 
+    [SerializeField] Choice choice;
 
+   
      bool[] CalledOnce = new bool[3];
-
+   
      
 //手紙を読んでいるかどうかの変数
      public static bool check = false;
@@ -24,10 +26,10 @@ public class GameMaster : MonoBehaviour
 
     void Update()
     {
+        
 
         stageGimmick.IsHit();
-
-
+       
         if(check == false)
         {
             //手紙パネル消滅
@@ -43,6 +45,18 @@ public class GameMaster : MonoBehaviour
         
         
     }
+
+
+    // void kagidore()
+    // {
+    //     bool KeyFlag = choice.KeyYesPush();
+    //     if(KeyFlag)
+    //     {
+    //         Debug.Log("open");
+    //         keyDoreOpen.OpenDore();
+    //     }
+    // }
+    
 
 
 }

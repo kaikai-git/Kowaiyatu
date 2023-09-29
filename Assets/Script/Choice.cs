@@ -8,6 +8,8 @@ public class Choice : MonoBehaviour
    [SerializeField] Button NoButton;
    [SerializeField] Text text;
 
+   [SerializeField] KeyDoreOpen keyDoreOpen;
+
 //パネルを表示
    public void ActiveChoice()
    {
@@ -21,13 +23,13 @@ public class Choice : MonoBehaviour
     //アイテムを使った時の処理をここに書く
      
      PlayerCtrl.CamMoveCtrl = 1;//画面
-     UsedItem.instance.UseItemSword();
-    
+     UsedItem.instance.UseItemSword();  
      gameObject.SetActive(false);
      Time.timeScale = 1;   
      Cursor.lockState = CursorLockMode.Locked;
      Cursor.visible = false;
-     
+
+    
    }
    public void KeyYesPush()
    {
@@ -35,13 +37,16 @@ public class Choice : MonoBehaviour
      
       PlayerCtrl.CamMoveCtrl = 1;//画面
      UsedItem.instance.UseItemKey();
-     
+      
     
      gameObject.SetActive(false);
      Time.timeScale = 1;   
      Cursor.lockState = CursorLockMode.Locked;
      Cursor.visible = false;
-     
+     bool swordFlag = true;
+
+     keyDoreOpen.OpenDore();
+    
    }
 
    //Noボタンを押したらアイテムを取得せずキャンセル

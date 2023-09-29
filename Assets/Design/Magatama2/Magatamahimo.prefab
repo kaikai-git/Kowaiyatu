@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 993793419044450449}
   - component: {fileID: 4207895098333921076}
   - component: {fileID: 2126126758944836606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magatamahimo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3313316570186455202}
   - component: {fileID: 5403608863105337684}
   - component: {fileID: 4762049316522911818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 8272471084209779094}
   - component: {fileID: 5783644342720571048}
   - component: {fileID: 9004131747296411914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magatama.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 8407528273789484252}
   - component: {fileID: 2774201126668849667}
   - component: {fileID: 1164994462920996390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magatama.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}

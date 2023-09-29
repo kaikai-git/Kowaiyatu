@@ -17,5 +17,9 @@ public class Fusuma : MonoBehaviour
         animator.SetTrigger("Click");
         Debug.Log("1");
     }
-    
+
+    public void MoveFusuma()
+    {
+        animator.SetTrigger("Move");
+    }
 }

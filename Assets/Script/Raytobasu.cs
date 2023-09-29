@@ -127,6 +127,7 @@ public class Raytobasu : MonoBehaviour
                         Tansucomponent.Tansu();
                     }
                     break;    
+                
             }
                 
             }
