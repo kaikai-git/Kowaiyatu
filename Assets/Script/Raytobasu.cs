@@ -9,6 +9,8 @@ public class Raytobasu : MonoBehaviour
     [SerializeField] Image pointer2;
     [SerializeField] GameObject keyChoicePanel;
     [SerializeField] GameObject swordChoicePanel;
+
+     [SerializeField] GameObject ohudaChoicePanel;
     [SerializeField] Check check;
 
    
@@ -90,7 +92,9 @@ public class Raytobasu : MonoBehaviour
                 Bunsyou.instance.changetext(7);
                 break;
                 case "KeyDore":
-                Bunsyou.instance.changetext(8);
+                KeyDoreOpen component = clickedObject.GetComponent<KeyDoreOpen>();
+                component.OpenDore();
+                //Bunsyou.instance.changetext(8);
                 break;
                 // case "KeyWall1":
                 // Bunsyou.instance.changetext(9);
@@ -136,6 +140,7 @@ public class Raytobasu : MonoBehaviour
                 
                 bool hasKey = ItemBox.instance.CanUseItem(Item.Type.Key);
                 bool hasSword = ItemBox.instance.CanUseItem(Item.Type.Sword);
+                bool hasOfuda = ItemBox.instance.CanUseItem(Item.Type.Ohuda);
 
                 ObjID objID = clickedObject.GetComponent<ObjID>();
                 int rayHitID = objID.ID;
@@ -171,6 +176,23 @@ public class Raytobasu : MonoBehaviour
                         }
                 
                     break;
+                    case 2:
+                    Debug.Log("2");
+                    if (hasOfuda)
+                        {
+                            //IsChoiced = true;
+                            
+                            PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                            Bunsyou.instance.ClearText();
+                            ohudaChoicePanel.SetActive(true);
+                            Time.timeScale = 0;
+                            Cursor.lockState = CursorLockMode.Confined;
+                            Cursor.visible = true;
+                        }
+                
+                    break;
+
+                    
                 }
                 //パネルを開く処理
 

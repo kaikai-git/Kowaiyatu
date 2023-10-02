@@ -12,7 +12,7 @@ public class KeyDoreOpen : MonoBehaviour
     }
     public void OpenDore()
     {
-        animator.SetTrigger("A");
+        animator.SetTrigger("Open");
         Debug.Log("ii");
 
     }

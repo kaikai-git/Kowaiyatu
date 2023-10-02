@@ -54,5 +54,24 @@ public class UsedItem : MonoBehaviour
         Debug.Log("ひつようなアイテムを持っていない");
       }
     }
+
+     public  void UseItemOhuda()
+    {
+        //使用できるアイテムがあれば使用
+
+    //勾玉を使った場合の処理
+      bool hasItem = ItemBox.instance.CanUseItem(Item.Type.Ohuda);
+      if(hasItem == true )
+      {
+            Debug.Log("Ohudause");
+       //Usedsword.SetActive(false);
+          
+       ItemBox.instance.UseItem(Item.Type.Ohuda);
+      }
+      else
+      {
+        Debug.Log("ひつようなアイテムを持っていない");
+      }
+    }
     
 }

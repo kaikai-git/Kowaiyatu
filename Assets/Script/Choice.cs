@@ -49,6 +49,24 @@ public class Choice : MonoBehaviour
     
    }
 
+   public void OhudaYesPush()
+   {
+    //アイテムを使った時の処理をここに書く
+     
+      PlayerCtrl.CamMoveCtrl = 1;//画面
+     UsedItem.instance.UseItemOhuda();
+      
+    
+     gameObject.SetActive(false);
+     Time.timeScale = 1;   
+     Cursor.lockState = CursorLockMode.Locked;
+     Cursor.visible = false;
+    // bool swordFlag = true;
+
+     keyDoreOpen.OpenDore();
+    
+   }
+
    //Noボタンを押したらアイテムを取得せずキャンセル
    public void NoPush()
    {
