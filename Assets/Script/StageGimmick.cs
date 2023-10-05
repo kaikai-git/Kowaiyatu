@@ -8,13 +8,14 @@ public class StageGimmick : MonoBehaviour
      bool[] flags = new bool[3];
      bool[] CalledOnce = new bool[3];
      public bool[] Flags {get => flags;}
-    
+    [SerializeField] Animator animator;
+    AudioSource audioSource;
     void Start()
     {
         flags[0] = false;
         flags[1] = false;
         flags[2] = false;
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
  
@@ -22,15 +23,17 @@ public class StageGimmick : MonoBehaviour
     {      
        
         if( Area[0].IsHit == true && !CalledOnce[0])
-         {
+         {  audioSource.Play();
+            animator.SetTrigger("State1");
              Debug.Log("hit1");
             flags[0] = true;
             CalledOnce[0] = true;
-            Camera.main.gameObject.GetComponent<ShakeCamera>().Shake();
+            //Camera.main.gameObject.GetComponent<ShakeCamera>().Shake();
             Bunsyou.instance.changetext(3);
          }
          else if( Area[1].IsHit == true && !CalledOnce[1]) 
          {
+            animator.SetTrigger("State2");
              Debug.Log("hit1");
             flags[1] = true;
             CalledOnce[1] = true;

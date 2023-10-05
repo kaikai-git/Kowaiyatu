@@ -18,7 +18,7 @@ public class Bunsyou : MonoBehaviour
     {
         //Debug.Log("change");
         textbun.text = word[wordnum];
-        Invoke(nameof(ClearText),3f);
+        Invoke(nameof(ClearText),2.5f);
     }
 
 //テキストを初期化

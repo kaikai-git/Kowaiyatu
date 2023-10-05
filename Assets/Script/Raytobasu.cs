@@ -77,6 +77,7 @@ public class Raytobasu : MonoBehaviour
             }
             else if (hitLayer == LayerMask.NameToLayer("CheakItem"))
             {
+                
                 string objTag = clickedObject.tag;
 
                 switch(objTag)

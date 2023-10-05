@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
         
         gameObject.SetActive(false);
         Debug.Log(type+"を取得");
+        
 
         //タイプごとに異なった文章を表示
         if(type == Type.Magatama)
