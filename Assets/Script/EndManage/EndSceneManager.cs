@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EndSceneManager : MonoBehaviour
 {
-    [SerializeField] GameObject TimeLine12;
-    [SerializeField] GameObject TimeLine3;
+    
 
     public void Start()
     {

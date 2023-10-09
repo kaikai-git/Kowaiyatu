@@ -11,7 +11,25 @@ public class ChangeParentSignal : MonoBehaviour
     [SerializeField] SceneChange sceneChange;
 
     [SerializeField] Image blackimage;
+
+    [SerializeField] GameObject TimeLine12;
+    [SerializeField] GameObject TimeLine3;
    
+   public void Start()
+   {
+      EndPlayer.endnum = EndPlayer.instance.DecideEnd();
+    
+        if(EndPlayer.endnum == 1||EndPlayer.endnum == 2)
+        {
+            //エンディング１．２
+            TimeLine12.SetActive(true);
+        }
+        else
+        {
+
+            TimeLine3.SetActive(true);
+        }
+   }
 
     public void Signal()
     {

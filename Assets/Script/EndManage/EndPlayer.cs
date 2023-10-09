@@ -40,7 +40,7 @@ public class EndPlayer : MonoBehaviour
             endnum = 1;
         }
          //エンディング2(Usualエンディング)を再生
-        else if(HasMagatama == true)
+        else if(HasSword == true)
         {
             Debug.Log("エンディング2へ");
             endnum = 2;

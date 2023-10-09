@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &33942238
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &792689196
 Transform:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 804014795}
   - component: {fileID: 804014797}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AnimSecneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,6 +852,8 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 5c36eb93d4dc17f48885f18f282eca9c, type: 2}
     - {fileID: 11400000, guid: 6357a2b1b891ac24d9172b5f907c2afe, type: 2}
+    - {fileID: 11400000, guid: 5794687d63affe44897ead3859e5ce90, type: 2}
+    - {fileID: 11400000, guid: 1b2509f34aba395408199a1b65dbb2a8, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -872,6 +874,34 @@ MonoBehaviour:
         - m_Target: {fileID: 804014797}
           m_TargetAssemblyTypeName: ChangeParentSignal, Assembly-CSharp
           m_MethodName: Signal
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 804014797}
+          m_TargetAssemblyTypeName: ChangeParentSignal, Assembly-CSharp
+          m_MethodName: FadeInOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 804014797}
+          m_TargetAssemblyTypeName: ChangeParentSignal, Assembly-CSharp
+          m_MethodName: ToEndScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -911,8 +941,10 @@ MonoBehaviour:
   ChangeParentObj: {fileID: 1618947794}
   ResetParentObj: {fileID: 581404022}
   ParentObj: {fileID: 638102302}
-  sceneChange: {fileID: 0}
-  blackimage: {fileID: 0}
+  sceneChange: {fileID: 1807435080}
+  blackimage: {fileID: 1261031405}
+  TimeLine12: {fileID: 33942237}
+  TimeLine3: {fileID: 782190661}
 --- !u!1 &1013389549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1321,8 @@ MonoBehaviour:
   ParentObj: {fileID: 638102302}
   sceneChange: {fileID: 1807435080}
   blackimage: {fileID: 1261031405}
+  TimeLine12: {fileID: 33942237}
+  TimeLine3: {fileID: 782190661}
 --- !u!114 &1136158879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,8 +1524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35c734d41751ed468e553957b7189ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeLine12: {fileID: 33942237}
-  TimeLine3: {fileID: 782190661}
 --- !u!4 &1342657151
 Transform:
   m_ObjectHideFlags: 0
