@@ -16,6 +16,7 @@ public class ItemBox : MonoBehaviour
         instance = this;
     }
 
+
      public void SetItem(Item.Type type)
     {
         if(type == Item.Type.Key)
@@ -30,13 +31,13 @@ public class ItemBox : MonoBehaviour
         }
          if(type == Item.Type.Sword)
         {
-                        
+            EndPlayer.HasSword = true;     
             box2.SetActive(true);
             
         }
          if(type == Item.Type.Magatama)
         {
-                       
+            EndPlayer.HasMagatama = true;      
             box3.SetActive(true);
             
         }
@@ -47,7 +48,7 @@ public class ItemBox : MonoBehaviour
     {
         if (type == Item.Type.Key)
         {
-            
+           
             return box0.activeSelf;
             
         }
@@ -59,13 +60,13 @@ public class ItemBox : MonoBehaviour
         }
         if (type == Item.Type.Sword)
         {
-
+             
             return box2.activeSelf;
 
         }
         if (type == Item.Type.Magatama)
         {
-
+            
             return box3.activeSelf;
 
         }
@@ -96,6 +97,8 @@ public class ItemBox : MonoBehaviour
             box3.SetActive(false);
         }
     }
+
+   
 
    
 }

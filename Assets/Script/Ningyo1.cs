@@ -8,10 +8,9 @@ public class Ningyo1 : MonoBehaviour
      bool Once = false;
 
 
-
-
     void Start()
     {
+       
         // ゲームオブジェクトから AudioSource コンポーネントを取得
         audioSource = GetComponent<AudioSource>();
     }
@@ -26,9 +25,10 @@ public class Ningyo1 : MonoBehaviour
        
         if(GetItem == true && Once == false)
         {
-           //gameObject.SetActive(false);
+          
             audioSource.Play();
             Once = true;
+            transform.position = new Vector3(-1,0,0);
         }
         // else
         // {
