@@ -16,7 +16,7 @@ public class PlayerCtrl : MonoBehaviour
     float x, z;
     public float speed = 0.1f;
     bool IsPause; //ポーズ判定
-    bool flashlightOn = false; // 懐中電灯の状態を記録する変数
+     bool flashlightOn = false; // 懐中電灯の状態を記録する変数
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     public float Xsensityvity = 2.5f, Ysensityvity = 0.3f;
@@ -45,6 +45,7 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(flashlightOn);
         float xRot = Input.GetAxis("Mouse X") * Ysensityvity * CamMoveCtrl;
         float yRot = Input.GetAxis("Mouse Y") * Xsensityvity * CamMoveCtrl;
 
@@ -153,7 +154,7 @@ public class PlayerCtrl : MonoBehaviour
         // Fキーが押されたら懐中電灯の表示/非表示を切り替える
         if (Input.GetKeyDown(KeyCode.F))
         {
-             audioSource.PlayOneShot(LightOnOff);
+            audioSource.PlayOneShot(LightOnOff);
             flashlightOn = !flashlightOn; // 状態を反転させる
             KaityuDentou.SetActive(flashlightOn); // 状態に基づいて懐中電灯を表示/非表示にする
         }

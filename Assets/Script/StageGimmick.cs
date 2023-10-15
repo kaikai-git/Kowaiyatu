@@ -4,20 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StageGimmick : MonoBehaviour
 {
+   
      [SerializeField] Image blackBackground;
+    // [SerializeField] KeyGetGimmick keyGetGimmick;
     [SerializeField] AreaHit[] Area;
     [SerializeField] SceneChange sceneChange;
-     bool[] flags = new bool[3];
-     bool[] CalledOnce = new bool[3];
+     bool[] flags = new bool[4];
+     bool[] CalledOnce = new bool[4];
+     bool GetItem;
      public bool[] Flags {get => flags;}
     [SerializeField] Animator animator;
+
+   
+    
     AudioSource audioSource;
     void Start()
     {
+        bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Key);
         flags[0] = false;
         flags[1] = false;
         flags[2] = false;
+        flags[3] = false;
         audioSource = GetComponent<AudioSource>();
+         
     }
 
  
@@ -52,6 +61,26 @@ public class StageGimmick : MonoBehaviour
             
 
          }
+         //鍵取得時イベント
+          else if( Area[3].IsHit == true && !CalledOnce[3]) 
+         {
+            //bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Key);
+            //Time.timeScale = 1; 
+            
+             //Debug.Log("SceneChange");
+             
+             Debug.Log("hit2");
+            flags[3] = true;
+            CalledOnce[3] = true;
+           
+             Time.timeScale = 0;
+            //StartCoroutine(LightOff());
+             
+            
+            //完全に暗転したらシーン変更
+            
+
+         }
           
     }
 
@@ -73,4 +102,7 @@ public class StageGimmick : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
          sceneChange.ChangeScene("AnimScene");
     }
+
+   
+  
 }

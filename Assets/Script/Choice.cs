@@ -37,7 +37,7 @@ public class Choice : MonoBehaviour
      
       PlayerCtrl.CamMoveCtrl = 1;//画面
      UsedItem.instance.UseItemKey();
-      
+    Debug.Log("Open");
     
      gameObject.SetActive(false);
      Time.timeScale = 1;   

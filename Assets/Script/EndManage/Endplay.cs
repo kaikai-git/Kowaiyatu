@@ -11,11 +11,21 @@ public class Endplay : MonoBehaviour
     [SerializeField] Text endNumText;
     [TextArea]
     public string[] Endtext;
+    public string[] EndNumtext;
+    //スクロール速度変数
     public float ScrolSpeed = 0.2f;
+
+    float Alpha;
+
+//フェード用黒画像
+     [SerializeField] Image FadeBlack;
+
+    [SerializeField] SceneChange scenechange;
     void Start()
     {
         EndPlayer.endnum = EndPlayer.instance.DecideEnd();
         endmovie();
+        
         
     }
 
@@ -23,8 +33,14 @@ public class Endplay : MonoBehaviour
     {
         if(posEndNumText.anchoredPosition.y < 0)
         {
-             pos.anchoredPosition  += new Vector2(0, ScrolSpeed);
+            pos.anchoredPosition  += new Vector2(0, ScrolSpeed);
             posEndNumText.anchoredPosition  += new Vector2(0, ScrolSpeed);
+        }
+        else
+        {
+            //Invoke("SceneChange", 3.0f);
+            StartCoroutine(BlackOut(FadeBlack));
+            StartCoroutine(Scenechange());
         }
        
         //OnEndNumtext();
@@ -34,14 +50,17 @@ public class Endplay : MonoBehaviour
         if(EndPlayer.endnum == 1)
         {
             endtext.text = Endtext[0];
+            endNumText.text = EndNumtext[0];
         }
         else if(EndPlayer.endnum == 2)
         {
             endtext.text = Endtext[1];
+            endNumText.text = EndNumtext[1];
         }
         else if(EndPlayer.endnum == 3)
         {
             endtext.text = Endtext[2];
+            endNumText.text = EndNumtext[2];
         }
     }
 
@@ -52,5 +71,36 @@ public class Endplay : MonoBehaviour
             Debug.Log("1");
         }
     }
-    
+
+    //posEndNumText.anchoredPosition.yの移動が完了したら３秒後にスタートシーンに戻る
+    // private void SceneChange()
+    // {
+    //     float fadeSpeed = 0.55f;
+    //    //scenechange.ChangeScene("StartScene");
+    //     Alpha +=  fadeSpeed * Time.deltaTime;
+    // }
+
+    private IEnumerator BlackOut(Image black)
+    {   
+        float fadeSpeed = 0.5f;
+        float kussyon = 0.002f;
+       yield return new WaitForSeconds(2.2f);
+        while(black.color.a < 1f)
+        {
+            black.color = new Color(
+             black.color.r,
+             black.color.g, 
+             black.color.b, 
+             black.color.a + fadeSpeed * Time.deltaTime * kussyon
+            );
+             yield return null;
+             //scenechange.ChangeScene("StartScene");
+        }
+    }
+
+    private IEnumerator Scenechange()
+    {
+        yield return new WaitForSeconds(6);
+        scenechange.ChangeScene("StartScene");
+    }
 }
