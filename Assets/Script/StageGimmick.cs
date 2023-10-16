@@ -9,22 +9,23 @@ public class StageGimmick : MonoBehaviour
     // [SerializeField] KeyGetGimmick keyGetGimmick;
     [SerializeField] AreaHit[] Area;
     [SerializeField] SceneChange sceneChange;
-     bool[] flags = new bool[4];
-     bool[] CalledOnce = new bool[4];
+     bool[] flags = new bool[8];
+     bool[] CalledOnce = new bool[8];
      bool GetItem;
      public bool[] Flags {get => flags;}
-    [SerializeField] Animator animator;
+    [SerializeField] Animator[] animator;
+    
+   [SerializeField] Gate gate;
 
+
+   [SerializeField] private AudioClip[] audioClip;
    
     
     AudioSource audioSource;
     void Start()
     {
         bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Key);
-        flags[0] = false;
-        flags[1] = false;
-        flags[2] = false;
-        flags[3] = false;
+        
         audioSource = GetComponent<AudioSource>();
          
     }
@@ -34,8 +35,9 @@ public class StageGimmick : MonoBehaviour
     {      
        
         if( Area[0].IsHit == true && !CalledOnce[0])
-         {  audioSource.Play();
-            animator.SetTrigger("State1");
+         {  
+            audioSource.PlayOneShot(audioClip[0]);
+            animator[0].SetTrigger("State1");
              Debug.Log("hit1");
             flags[0] = true;
             CalledOnce[0] = true;
@@ -44,7 +46,7 @@ public class StageGimmick : MonoBehaviour
          }
          else if( Area[1].IsHit == true && !CalledOnce[1]) 
          {
-            animator.SetTrigger("State2");
+            animator[0].SetTrigger("State2");
              Debug.Log("hit1");
             flags[1] = true;
             CalledOnce[1] = true;
@@ -80,6 +82,13 @@ public class StageGimmick : MonoBehaviour
             //完全に暗転したらシーン変更
             
 
+         }
+         //扉が閉まって音再生
+         else if(Area[4].IsHit == true && !CalledOnce[4])
+         { 
+            audioSource.PlayOneShot(audioClip[1]);
+            animator[1].SetTrigger("Close");
+           // gate.Close();
          }
           
     }
