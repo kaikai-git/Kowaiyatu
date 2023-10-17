@@ -15,13 +15,14 @@ public class StageGimmick : MonoBehaviour
      public bool[] Flags {get => flags;}
     [SerializeField] Animator[] animator;
     
-   [SerializeField] Gate gate;
+   //[SerializeField] Gate gate;
 
 
-   [SerializeField] private AudioClip[] audioClip;
-   
+   [SerializeField]  AudioClip[] audioClip;
+   [SerializeField] ShakeCamera shakeCamera;
     
     AudioSource audioSource;
+    [SerializeField] AudioSource RainaudioSource;
     void Start()
     {
         bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Key);
@@ -42,7 +43,7 @@ public class StageGimmick : MonoBehaviour
             flags[0] = true;
             CalledOnce[0] = true;
             //Camera.main.gameObject.GetComponent<ShakeCamera>().Shake();
-            Bunsyou.instance.changetext(3);
+            
          }
          else if( Area[1].IsHit == true && !CalledOnce[1]) 
          {
@@ -50,7 +51,7 @@ public class StageGimmick : MonoBehaviour
              Debug.Log("hit1");
             flags[1] = true;
             CalledOnce[1] = true;
-            Bunsyou.instance.changetext(4);
+            
          }
          else if( Area[2].IsHit == true && !CalledOnce[2]) 
          {
@@ -86,14 +87,41 @@ public class StageGimmick : MonoBehaviour
          //扉が閉まって音再生
          else if(Area[4].IsHit == true && !CalledOnce[4])
          { 
-            audioSource.PlayOneShot(audioClip[1]);
-            animator[1].SetTrigger("Close");
-           // gate.Close();
-         }
+            
+            flags[4] = true;
+            CalledOnce[4] = true;
+            StartCoroutine(Gate());
           
+         }
+         //箪笥落下
+          else if(Area[5].IsHit == true && !CalledOnce[5])
+         { 
+            
+            flags[5] = true;
+            CalledOnce[5] = true;
+           
+            animator[2].SetTrigger("Fall");
+            Invoke("TansuFall",0.5f);
+         }
     }
 
+    private void TansuFall()
+   {
+         shakeCamera.Shake();
+        audioSource.PlayOneShot(audioClip[2]);
+   }
+
+      private  IEnumerator Gate()
+      {
+         animator[1].SetTrigger("Close");
+           yield return new WaitForSeconds(0.7f);
+          audioSource.PlayOneShot(audioClip[1]);
+            yield return new WaitForSeconds(0.6f);
+          //音量を下げる
+            RainaudioSource.volume = 0.1f;
+      }
 //暗転させる
+
      private IEnumerator BlackOut(Image black)
     {   
         float fadeSpeed = 0.45f;

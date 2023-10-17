@@ -29,8 +29,6 @@ public class PlayerCtrl : MonoBehaviour
     float minX = -90f, maxX = 90f;
     //bool isWalking = false;
 
-    
-    // Start is called before the first frame update
     void Start()
     {
         // audioSourceFootSE = GetComponent<AudioSource>();
