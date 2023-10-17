@@ -176,6 +176,7 @@ public class PlayerCtrl : MonoBehaviour
 
             audioSource.PlayOneShot(Suzu);
             IsPause = true;
+            audioSourceFootSE.Stop();
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
             

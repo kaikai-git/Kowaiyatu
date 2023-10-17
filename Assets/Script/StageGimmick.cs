@@ -9,8 +9,8 @@ public class StageGimmick : MonoBehaviour
     // [SerializeField] KeyGetGimmick keyGetGimmick;
     [SerializeField] AreaHit[] Area;
     [SerializeField] SceneChange sceneChange;
-     bool[] flags = new bool[8];
-     bool[] CalledOnce = new bool[8];
+     bool[] flags = new bool[11];
+     bool[] CalledOnce = new bool[11];
      bool GetItem;
      public bool[] Flags {get => flags;}
     [SerializeField] Animator[] animator;
@@ -103,8 +103,29 @@ public class StageGimmick : MonoBehaviour
             animator[2].SetTrigger("Fall");
             Invoke("TansuFall",0.5f);
          }
+
+         //お面落下
+          else if(Area[6].IsHit == true && !CalledOnce[6])
+         { 
+            
+            flags[6] = true;
+            CalledOnce[6] = true;
+           
+            animator[3].SetTrigger("Fall");
+           
+         }
+          else if(Area[7].IsHit == true && !CalledOnce[7])
+         { 
+            
+            flags[7] = true;
+            CalledOnce[7] = true;
+           
+            Bunsyou.instance.changetext(12);
+           
+         }
     }
 
+   
     private void TansuFall()
    {
          shakeCamera.Shake();
