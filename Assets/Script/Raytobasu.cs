@@ -13,7 +13,8 @@ public class Raytobasu : MonoBehaviour
      [SerializeField] GameObject ohudaChoicePanel;
     [SerializeField] Check check;
 
-   
+//  アイテムを使用したオブジェクトに使用する前のテキストを表示させないようにする変数
+   bool[] UsedText = new bool[11];
 
   // public bool IsChoiced;
 
@@ -82,12 +83,14 @@ public class Raytobasu : MonoBehaviour
 
                 switch(objTag)
             {
+                //手紙ならぱねるをひょうじして
                 case "tegami":
-                    GameMaster.check = true;
+                    ObjID objID = clickedObject.GetComponent<ObjID>();
+                    int rayHitID = objID.ID;
                     Cursor.lockState = CursorLockMode.Confined;
-                    Cursor.visible = true;
-                    check.CheckTegami();
-                    Debug.Log(GameMaster.check);
+                    check.CheckTegami(rayHitID);
+                    
+                    
                     break;
                 case "Tabibito":
                 Bunsyou.instance.changetext(7);
@@ -161,6 +164,14 @@ public class Raytobasu : MonoBehaviour
                             Cursor.lockState = CursorLockMode.Confined;
                             Cursor.visible = true;
                         }
+                        else if(UsedText[0])
+                        {
+                            
+                        }
+                        else
+                        {
+                            Bunsyou.instance.changetext(14);
+                        }
                     break;
                     case 1:
                     Debug.Log("1");
@@ -175,10 +186,19 @@ public class Raytobasu : MonoBehaviour
                             Cursor.lockState = CursorLockMode.Confined;
                             Cursor.visible = true;
                         }
+                        else if(UsedText[1])
+                        {
+                            
+                        }
+                        else
+                        {
+                            //Bunsyou.instance.changetext(13);
+                        }
                 
                     break;
                     case 2:
                     Debug.Log("2");
+                    //御札で開けるドア
                     if (hasOfuda)
                         {
                             //IsChoiced = true;
@@ -189,6 +209,15 @@ public class Raytobasu : MonoBehaviour
                             Time.timeScale = 0;
                             Cursor.lockState = CursorLockMode.Confined;
                             Cursor.visible = true;
+                            UsedText[2] = true;
+                        }
+                        else if(UsedText[2])
+                        {
+                            
+                        }
+                        else
+                        {
+                            Bunsyou.instance.changetext(13);
                         }
                 
                     break;

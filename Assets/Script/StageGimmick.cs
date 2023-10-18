@@ -9,31 +9,42 @@ public class StageGimmick : MonoBehaviour
     // [SerializeField] KeyGetGimmick keyGetGimmick;
     [SerializeField] AreaHit[] Area;
     [SerializeField] SceneChange sceneChange;
-     bool[] flags = new bool[11];
-     bool[] CalledOnce = new bool[11];
-     bool GetItem;
+    [SerializeField] ExplainText explainText;
+     bool[] flags = new bool[15];
+     bool[] CalledOnce = new bool[15];
+    
      public bool[] Flags {get => flags;}
+      
+    
     [SerializeField] Animator[] animator;
     
    //[SerializeField] Gate gate;
-
+ 
+   
 
    [SerializeField]  AudioClip[] audioClip;
    [SerializeField] ShakeCamera shakeCamera;
     
     AudioSource audioSource;
     [SerializeField] AudioSource RainaudioSource;
+     [SerializeField] GameObject NarehateRun;
     void Start()
     {
-        bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Key);
+        
         
         audioSource = GetComponent<AudioSource>();
-         
+        explainText =  explainText.GetComponent<ExplainText>();
+    }
+
+    void Update()
+    {
+      Debug.Log(Area[9].IsHitM);
     }
 
  
     public void IsHit()
     {      
+       bool GetItem = ItemBox.instance.CanUseItem(Item.Type.Magatama);
        
         if( Area[0].IsHit == true && !CalledOnce[0])
          {  
@@ -114,13 +125,65 @@ public class StageGimmick : MonoBehaviour
             animator[3].SetTrigger("Fall");
            
          }
+         //懐中電灯テキスト表示
           else if(Area[7].IsHit == true && !CalledOnce[7])
          { 
             
             flags[7] = true;
             CalledOnce[7] = true;
            
-            Bunsyou.instance.changetext(12);
+            Bunsyou.instance.changetext(12);  
+            explainText.StartCoroutine("AlphaUp");           
+           
+         }
+        //懐中電灯テキスト非表示
+         else if(Area[7].IsOut == true && !CalledOnce[8])
+         { 
+            
+            flags[8] = true;
+            CalledOnce[8] = true;
+            explainText.StopCoroutine("AlphaUp");
+            explainText.StartCoroutine("AlphaDown");    
+           
+         }
+          //アイテムテキスト表示
+          else if(Area[8].IsHit == true && !CalledOnce[9])
+         { 
+            
+            flags[9] = true;
+            CalledOnce[9] = true;
+           
+           
+            explainText.StartCoroutine("AlphaUp");           
+           
+         }
+        //アイテムテキスト非表示
+         else if(Area[8].IsOut == true && !CalledOnce[10])
+         { 
+            
+            flags[10] = true;
+            CalledOnce[10] = true;
+            explainText.StopCoroutine("AlphaUp");
+            explainText.StartCoroutine("AlphaDown"); 
+            // explainText.changetext(1);
+            //Bunsyou.instance.changetext(12);          
+           
+         }
+         //勾玉取得したら出現
+         else if(Area[9].IsHitM == true && !CalledOnce[11] &&GetItem == true)
+         { 
+            
+              Debug.Log("zikkou");
+               flags[11] = true;
+               CalledOnce[11] = true;
+               audioSource.PlayOneShot(audioClip[4]);
+               NarehateRun.SetActive(true); 
+               
+            
+              
+            
+            // explainText.changetext(1);
+            //Bunsyou.instance.changetext(12);          
            
          }
     }

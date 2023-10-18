@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-     
+    
     public enum Type
     {
         Key,
@@ -28,6 +28,7 @@ public class Item : MonoBehaviour
         if(type == Type.Magatama)
         {
              Bunsyou.instance.changetext(0);
+             
         }
         else if(type == Type.Ohuda)
         {

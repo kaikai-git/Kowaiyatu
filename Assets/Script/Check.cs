@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Check : MonoBehaviour
 {
+    [SerializeField] Tegamitext tegamitext;
 
-
-    public void CheckTegami()
+    public void CheckTegami(int tegamiID)
     {
-        if(GameMaster.check == true)
-        {
+            tegamitext.changetext(tegamiID);
             gameObject.SetActive(true);
              PlayerCtrl.CamMoveCtrl = 0;
     
             Time.timeScale = 0;
-        }
-    }
+     }
     public void OutTegami()
     {
         // if (GameMaster.check == false)

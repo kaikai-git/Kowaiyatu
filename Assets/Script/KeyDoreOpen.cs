@@ -6,6 +6,7 @@ public class KeyDoreOpen : MonoBehaviour
 {
     private Animator animator;
     private AudioSource audioSource;
+     private bool once = true;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -13,9 +14,13 @@ public class KeyDoreOpen : MonoBehaviour
     }
     public void OpenDore()
     {
-        audioSource.Play();
-        animator.SetTrigger("Open");
-        Debug.Log("ii");
+        if(once == true)
+        {
+            audioSource.Play();
+            animator.SetTrigger("Open");
+            Debug.Log("ii");
+            once = false;
+        }
 
     }
 }

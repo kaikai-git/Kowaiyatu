@@ -26,7 +26,7 @@ public class Ningyo1 : MonoBehaviour
         if(GetItem == true && Once == false)
         {
           
-            audioSource.Play();
+            //audioSource.Play();
             Once = true;
             transform.position = new Vector3(-1,0,0);
         }
