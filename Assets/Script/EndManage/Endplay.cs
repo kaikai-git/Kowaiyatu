@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class Endplay : MonoBehaviour
 {
     //public int endnum;
+
+    //0病院1城
+    [SerializeField] Sprite[] EndSprite;
+    [SerializeField] Image EndImage;
     public RectTransform pos;
     public RectTransform posEndNumText;
     [SerializeField] Text endtext;
@@ -46,20 +50,24 @@ public class Endplay : MonoBehaviour
        
         //OnEndNumtext();
     }
+    //文章とイメージ変更
     public void endmovie()
     {
         if(EndPlayer.endnum == 1)
         {
+            EndImage.sprite = EndSprite[0];
             endtext.text = Endtext[0];
             endNumText.text = EndNumtext[0];
         }
         else if(EndPlayer.endnum == 2)
         {
+            EndImage.sprite = EndSprite[0];
             endtext.text = Endtext[1];
             endNumText.text = EndNumtext[1];
         }
         else if(EndPlayer.endnum == 3)
         {
+            EndImage.sprite = EndSprite[1];
             endtext.text = Endtext[2];
             endNumText.text = EndNumtext[2];
         }
