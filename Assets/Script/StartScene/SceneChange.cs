@@ -10,4 +10,17 @@ public class SceneChange : MonoBehaviour
         // 指定したシーン名に移動する
         SceneManager.LoadScene(SceneName);
     }
+
+    public void PauseTitle()
+    {
+        ChangeScene("StartScene");
+    }
+    public void PauseQuit()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+        #else
+        Application.Quit();//ゲームプレイ終了
+        #endif
+    }
 }

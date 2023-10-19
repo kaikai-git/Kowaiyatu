@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
         color.a = 1f;
         FadeInBlack.color = color;
         StartCoroutine(FadeIn(FadeInBlack));
+        
     }
 
     //スタートボタンを押したとき
@@ -45,7 +46,7 @@ public class UIManager : MonoBehaviour
     }
 
     private IEnumerator BlackOut(Image black)
-    {   
+    {   Debug.Log("Start3");
         float fadeSpeed = 0.55f;
         while (black.color.a < 1f)
         {
@@ -127,9 +128,9 @@ public class UIManager : MonoBehaviour
     }
 }
     private IEnumerator FadeIn(Image black)
-    {
+    {Debug.Log("Start1");
         float fadeSpeed = 0.3f;
-        while (black.color.a > 0f)
+        while (black.color.a >= 0f)
         {
             black.color = new Color(
                 black.color.r,
@@ -139,7 +140,7 @@ public class UIManager : MonoBehaviour
             );
             yield return null;
         }
-        
+        Debug.Log("Start2");
     }
 
     private IEnumerator UpAlpha(Text text, float fadeSpeed)

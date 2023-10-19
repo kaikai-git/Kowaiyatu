@@ -28,6 +28,9 @@ public class StageGimmick : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioSource RainaudioSource;
      [SerializeField] GameObject NarehateRun;
+      [SerializeField] GameObject Nigyou;
+
+       [SerializeField] GameObject Rousoku;
     void Start()
     {
         
@@ -179,16 +182,34 @@ public class StageGimmick : MonoBehaviour
                audioSource.PlayOneShot(audioClip[4]);
                NarehateRun.SetActive(true); 
                
+         }
+          //人形落下
+          else if(Area[10].IsHit == true && !CalledOnce[12])
+         { 
             
-              
+            flags[12] = true;
+            CalledOnce[12] = true;
+           Nigyou.SetActive(true);
+           Invoke("NingyoFall",0.5f);
+           
+         }
+
+            //ろうそく着く
+          else if(Area[11].IsHit == true && !CalledOnce[13])
+         { 
             
-            // explainText.changetext(1);
-            //Bunsyou.instance.changetext(12);          
+            flags[13] = true;
+            CalledOnce[13] = true;
+           Rousoku.SetActive(true);
+            
            
          }
     }
 
-   
+   private void NingyoFall()
+   {
+       audioSource.PlayOneShot(audioClip[5]);
+   }
     private void TansuFall()
    {
          shakeCamera.Shake();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -974,7 +974,7 @@ MonoBehaviour:
   - "\u30A8\u30F3\u30C91\u3000\u201D\u5947\u5999\u306A\u4F53\u9A13\u201D"
   - "\u30A8\u30F3\u30C92\u3000\u201D\u89E3\u3051\u306A\u3044\u546A\u3044\u201D"
   - "\u30A8\u30F3\u30C93\u3000\u201D\u8840\u3060\u307E\u308A\u201D"
-  ScrolSpeed: 0.26
+  ScrolSpeed: 60
   FadeBlack: {fileID: 987367557}
   scenechange: {fileID: 1686613910}
 --- !u!4 &2033754378

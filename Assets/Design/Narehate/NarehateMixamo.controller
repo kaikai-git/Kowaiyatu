@@ -30,7 +30,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mixamorun
-  m_Speed: 0.81
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

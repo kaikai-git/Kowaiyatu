@@ -14,7 +14,7 @@ public class Endplay : MonoBehaviour
     public string[] EndNumtext;
     //スクロール速度変数
     public float ScrolSpeed = 0.2f;
-
+    private float scrollAmount ;
     float Alpha;
 
 //フェード用黒画像
@@ -25,6 +25,7 @@ public class Endplay : MonoBehaviour
     {
         EndPlayer.endnum = EndPlayer.instance.DecideEnd();
         endmovie();
+        scrollAmount = ScrolSpeed * Time.deltaTime; // scrollAmountを初期化
         
         
     }
@@ -33,8 +34,8 @@ public class Endplay : MonoBehaviour
     {
         if(posEndNumText.anchoredPosition.y < 0)
         {
-            pos.anchoredPosition  += new Vector2(0, ScrolSpeed);
-            posEndNumText.anchoredPosition  += new Vector2(0, ScrolSpeed);
+            pos.anchoredPosition  += new Vector2(0, scrollAmount);
+            posEndNumText.anchoredPosition  += new Vector2(0, scrollAmount);
         }
         else
         {
@@ -104,3 +105,6 @@ public class Endplay : MonoBehaviour
         scenechange.ChangeScene("StartScene");
     }
 }
+
+
+

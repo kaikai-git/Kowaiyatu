@@ -100,13 +100,10 @@ public class Raytobasu : MonoBehaviour
                 component.OpenDore();
                 //Bunsyou.instance.changetext(8);
                 break;
-                // case "KeyWall1":
-                // Bunsyou.instance.changetext(9);
-                // break;
-                // case "KeyWall1":
-                // opendoreAnim.SetTrigger("open");
-                // break;
-                // 他のオブジェクトの処理をここに追加
+                case "LockDore":
+                Bunsyou.instance.changetext(10);
+
+                break;
                 case "Fusuma":
                     Debug.Log("Open");
                     Fusuma fusumaComponent = clickedObject.GetComponent<Fusuma>();

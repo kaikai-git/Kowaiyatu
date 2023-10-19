@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+     [SerializeField] AudioSource SE;
     
     public enum Type
     {
@@ -19,7 +20,7 @@ public class Item : MonoBehaviour
 //所得したアイテムを格納してActiveFalse
      public void ClickedItem()
      {
-        
+        SE.Play();
         gameObject.SetActive(false);
         Debug.Log(type+"を取得");
         
