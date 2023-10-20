@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AreaHit : MonoBehaviour
 {
-    public bool IsHit,IsOut,IsHitM = false;
+    public bool IsHit,IsOut,IsHitM,IsStay = false;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -23,16 +23,16 @@ public class AreaHit : MonoBehaviour
             
         }
     }
-    // void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.CompareTag("Player"))
-    //     {
-    //         IsStay = true;
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            IsStay = true;
             
-    //     }
-    //     else
-    //     {
-    //         IsStay = false;
-    //     }
-    // }
+        }
+        else
+        {
+            IsStay = false;
+        }
+    }
 }

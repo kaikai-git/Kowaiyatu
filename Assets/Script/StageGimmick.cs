@@ -90,7 +90,7 @@ public class StageGimmick : MonoBehaviour
             flags[3] = true;
             CalledOnce[3] = true;
            
-             Time.timeScale = 0;
+             //Time.timeScale = 0;
             //StartCoroutine(LightOff());
              
             
@@ -204,6 +204,15 @@ public class StageGimmick : MonoBehaviour
             
            
          }
+         else if(Area[12].IsHit == true && !CalledOnce[14])
+         { 
+            
+            flags[14] = true;
+            CalledOnce[14] = true;
+           Rousoku.SetActive(false);
+            
+           
+         }
     }
 
    private void NingyoFall()
@@ -212,7 +221,7 @@ public class StageGimmick : MonoBehaviour
    }
     private void TansuFall()
    {
-         shakeCamera.Shake();
+         //shakeCamera.Shake();
         audioSource.PlayOneShot(audioClip[2]);
    }
 
