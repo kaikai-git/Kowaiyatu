@@ -21,7 +21,7 @@ public class PlayerCtrl : MonoBehaviour
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     public float Xsensityvity = 2.5f, Ysensityvity = 0.3f;
-    float RotateSpeed = 170f;
+    public float RotateSpeed = 170f;
     bool cursorLock = true;
 
     bool isWalking = false;
@@ -151,7 +151,7 @@ public class PlayerCtrl : MonoBehaviour
     {
        
         // Fキーが押されたら懐中電灯の表示/非表示を切り替える
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && Time.timeScale == 1)
         {
             audioSource.PlayOneShot(LightOnOff);
             flashlightOn = !flashlightOn; // 状態を反転させる
@@ -183,7 +183,7 @@ public class PlayerCtrl : MonoBehaviour
             
             
         }
-        else if (Input.GetKeyDown(KeyCode.E) && IsPause == true)
+        else if (Input.GetKeyDown(KeyCode.E) && IsPause == true )
         {
             
              cam.SetActive(true);

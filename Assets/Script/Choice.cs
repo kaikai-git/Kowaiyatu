@@ -9,12 +9,18 @@ public class Choice : MonoBehaviour
    [SerializeField] Text text;
 
    [SerializeField] KeyDoreOpen keyDoreOpen;
+   //足音止める用
+    [SerializeField] AudioSource FootSE;
 
 //パネルを表示
    public void ActiveChoice()
    {
     //選択肢を呼び出す
+     FootSE.Stop();
      gameObject.SetActive(true);
+      Time.timeScale = 0;//停止
+       Cursor.lockState = CursorLockMode.Confined;
+      Cursor.visible = true;
    }
 
    //Yesボタンを押したらアイテム取得

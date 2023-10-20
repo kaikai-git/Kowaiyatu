@@ -21,6 +21,7 @@ public class Check : MonoBehaviour
     {
         // if (GameMaster.check == false)
         // {
+             FootSE.Stop();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             GameMaster.check = false;

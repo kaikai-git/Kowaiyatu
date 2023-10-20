@@ -35,7 +35,7 @@ public class Pause : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
              else if(enteredImage == OhudaImage)
              {
                 ItemName.text = ("おふだ");
-                ItemDescription.text = ("このおふだをつかえばどこかが開くかも");
+                ItemDescription.text = ("なにかにつかえるのか？");
              }
             else if(enteredImage == SwordImage)
              {

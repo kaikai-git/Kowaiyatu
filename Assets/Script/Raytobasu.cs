@@ -7,10 +7,10 @@ public class Raytobasu : MonoBehaviour
 {
     [SerializeField] Image pointer;
     [SerializeField] Image pointer2;
-    [SerializeField] GameObject keyChoicePanel;
-    [SerializeField] GameObject swordChoicePanel;
+    [SerializeField] Choice keyChoicePanel;
+    //[SerializeField] GameObject swordChoicePanel;
 
-     [SerializeField] GameObject ohudaChoicePanel;
+     [SerializeField] Choice ohudaChoicePanel;
     [SerializeField] Check check;
 
 //  アイテムを使用したオブジェクトに使用する前のテキストを表示させないようにする変数
@@ -156,10 +156,9 @@ public class Raytobasu : MonoBehaviour
                             //IsChoiced = true;
                             PlayerCtrl.CamMoveCtrl = 0;//画面固定
                             Bunsyou.instance.ClearText();//テキスト消す
-                            keyChoicePanel.SetActive(true);//パネル表示
-                            Time.timeScale = 0;//停止
-                            Cursor.lockState = CursorLockMode.Confined;
-                            Cursor.visible = true;
+                            keyChoicePanel.ActiveChoice();//パネル表示
+                            
+                          
                         }
                         else if(UsedText[0])
                         {
@@ -176,12 +175,12 @@ public class Raytobasu : MonoBehaviour
                         {
                             //IsChoiced = true;
                             
-                            PlayerCtrl.CamMoveCtrl = 0;//画面固定
-                            Bunsyou.instance.ClearText();
-                            swordChoicePanel.SetActive(true);
-                            Time.timeScale = 0;
-                            Cursor.lockState = CursorLockMode.Confined;
-                            Cursor.visible = true;
+                            // PlayerCtrl.CamMoveCtrl = 0;//画面固定
+                            // Bunsyou.instance.ClearText();
+                            // swordChoicePanel.SetActive(true);
+                            // Time.timeScale = 0;
+                            // Cursor.lockState = CursorLockMode.Confined;
+                            // Cursor.visible = true;
                         }
                         else if(UsedText[1])
                         {
@@ -201,11 +200,8 @@ public class Raytobasu : MonoBehaviour
                             //IsChoiced = true;
                             
                             PlayerCtrl.CamMoveCtrl = 0;//画面固定
-                            Bunsyou.instance.ClearText();
-                            ohudaChoicePanel.SetActive(true);
-                            Time.timeScale = 0;
-                            Cursor.lockState = CursorLockMode.Confined;
-                            Cursor.visible = true;
+                            Bunsyou.instance.ClearText();//テキスト消す
+                            ohudaChoicePanel.ActiveChoice();//パネル表示
                             UsedText[2] = true;
                         }
                         else if(UsedText[2])

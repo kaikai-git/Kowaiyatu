@@ -41,7 +41,7 @@ public class StageGimmick : MonoBehaviour
 
     void Update()
     {
-      Debug.Log(Area[9].IsHitM);
+      //Debug.Log(Area[9].IsHitM);
     }
 
  
@@ -135,7 +135,7 @@ public class StageGimmick : MonoBehaviour
             flags[7] = true;
             CalledOnce[7] = true;
            
-            Bunsyou.instance.changetext(12);  
+            
             explainText.StartCoroutine("AlphaUp");           
            
          }

@@ -92,7 +92,7 @@ public class Endplay : MonoBehaviour
     private IEnumerator BlackOut(Image black)
     {   
         float fadeSpeed = 0.5f;
-        float kussyon = 0.002f;
+        float kussyon = 0.007f;
        yield return new WaitForSeconds(2.2f);
         while(black.color.a < 1f)
         {

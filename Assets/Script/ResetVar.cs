@@ -11,5 +11,15 @@ public class ResetVar : MonoBehaviour
          Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             Time.timeScale = 1;
+            //endnum初期化
+             EndPlayer.endnum = EndPlayer.instance.DecideEnd();
+             EndPlayer.endnum = 3;
+             EndPlayer.HasSword = false;
+             EndPlayer.HasMagatama = false;
+    }
+
+    void Update()
+    {
+        Debug.Log(EndPlayer.endnum);
     }
 }
