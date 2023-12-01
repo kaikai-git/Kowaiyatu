@@ -20,6 +20,6 @@ public class ResetVar : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(EndPlayer.endnum);
+        //Debug.Log(EndPlayer.endnum);
     }
 }

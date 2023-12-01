@@ -7,12 +7,14 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] Image blackBackground;
     [SerializeField] Image FadeInBlack;
+    [SerializeField] GameObject CreditPanel;
 
     [SerializeField] Image mouseImage;
     [SerializeField] Text text1;
     [SerializeField] Text text2;
     public GameObject StartButton;
     public GameObject QuitButton;
+    public GameObject CreditButton;   
     private bool text1Faded = false;
     
     [SerializeField] SceneChange scenechange;
@@ -32,6 +34,7 @@ public class UIManager : MonoBehaviour
     { 
         StartButton.SetActive(false);
         QuitButton.SetActive(false);
+        CreditButton.SetActive(false);
         StartCoroutine(BlackOut(blackBackground));
     }
 
@@ -44,6 +47,19 @@ public class UIManager : MonoBehaviour
         Application.Quit();//ゲームプレイ終了
         #endif
     }
+
+     //クレジットボタンを押したとき
+    public void OnClickCreditbutton()
+    { 
+        CreditPanel.SetActive(true);
+    }
+
+     //クレジットパネルを押したとき
+    public void OnClickCreditPanel()
+    { 
+        CreditPanel.SetActive(false);
+    }
+    
 
     private IEnumerator BlackOut(Image black)
     {   Debug.Log("Start3");

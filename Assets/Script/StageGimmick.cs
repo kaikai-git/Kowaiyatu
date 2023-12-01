@@ -10,8 +10,8 @@ public class StageGimmick : MonoBehaviour
     [SerializeField] AreaHit[] Area;
     [SerializeField] SceneChange sceneChange;
     [SerializeField] ExplainText explainText;
-     bool[] flags = new bool[15];
-     bool[] CalledOnce = new bool[15];
+     bool[] flags = new bool[20];
+     bool[] CalledOnce = new bool[20];
     
      public bool[] Flags {get => flags;}
       
@@ -26,8 +26,10 @@ public class StageGimmick : MonoBehaviour
    [SerializeField] ShakeCamera shakeCamera;
     
     AudioSource audioSource;
-    [SerializeField] AudioSource RainaudioSource;
+    [SerializeField] GameObject RainaudioSource;
+    [SerializeField] GameObject RainaudioSourceClose;
      [SerializeField] GameObject NarehateRun;
+     [SerializeField] GameObject NarehateWalk;
       [SerializeField] GameObject Nigyou;
 
        [SerializeField] GameObject Rousoku;
@@ -181,6 +183,7 @@ public class StageGimmick : MonoBehaviour
                CalledOnce[11] = true;
                audioSource.PlayOneShot(audioClip[4]);
                NarehateRun.SetActive(true); 
+               Destroy(NarehateRun,4f);
                
          }
           //人形落下
@@ -213,6 +216,17 @@ public class StageGimmick : MonoBehaviour
             
            
          }
+         else if(Area[13].IsHit == true && !CalledOnce[15])
+         { 
+            
+            flags[15] = true;
+            CalledOnce[15] = true;
+            
+           NarehateWalk.SetActive(true);
+            animator[4].SetTrigger("Walk");
+            Destroy(NarehateWalk,10f);
+           
+         }
     }
 
    private void NingyoFall()
@@ -232,7 +246,8 @@ public class StageGimmick : MonoBehaviour
           audioSource.PlayOneShot(audioClip[1]);
             yield return new WaitForSeconds(0.6f);
           //音量を下げる
-            RainaudioSource.volume = 0.1f;
+            RainaudioSource.SetActive(false);
+            RainaudioSourceClose.SetActive(true);
       }
 //暗転させる
 

@@ -6,7 +6,7 @@ public class Ningyo1 : MonoBehaviour
 {
     private AudioSource audioSource;
      bool Once = false;
-
+    [SerializeField] Transform MovePos;
 
     void Start()
     {
@@ -28,7 +28,8 @@ public class Ningyo1 : MonoBehaviour
           
             //audioSource.Play();
             Once = true;
-            transform.position = new Vector3(-1,0,0);
+            transform.position = MovePos.position;
+            transform.Rotate(0,180f,0);
         }
         // else
         // {

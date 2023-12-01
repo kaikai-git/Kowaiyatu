@@ -6,17 +6,19 @@ using UnityEngine;
 public class PlayerCtrl : MonoBehaviour
 {
    [SerializeField] GameObject PauseCanvas;
+   [SerializeField] GameObject SettingCanvas;
    [SerializeField] GameObject KaityuDentou;
 
    public AudioClip LightOnOff;
     public AudioClip Suzu;
-    
+
     [SerializeField] private AudioSource audioSourceFootSE;
     [SerializeField] private AudioSource audioSource;
-   
+
     float x, z;
     public float speed = 0.1f;
     bool IsPause; //ポーズ判定
+    bool IsSetting;//設定判定
      bool flashlightOn = false; // 懐中電灯の状態を記録する変数
     public GameObject cam;
     Quaternion cameraRot, characterRot;
@@ -56,65 +58,103 @@ public class PlayerCtrl : MonoBehaviour
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
+
+
+        //Debug.Log(audioSourceFootSE.isPlaying);
+
         ///うごいてるときだけ
-        
+
              pause();
-              
-        RotatePlayer();
+             Setting();
+
+        //RotatePlayer();
         //UpdateCursorLock();
         Kaityudentou();
-       
-        
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }  
+
     }
 
-    void RotatePlayer()
-    {
-        float rotationAmount = Input.GetAxisRaw("Horizontal") * RotateSpeed * Time.deltaTime;
+    // void RotatePlayer()
+    // {
+    //     float rotationAmount = Input.GetAxisRaw("Horizontal") * RotateSpeed * Time.deltaTime;
 
-        Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotationAmount);
-        characterRot *= deltaRotation;
-    }
+    //     Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotationAmount);
+    //     characterRot *= deltaRotation;
+    // }
 
     private void FixedUpdate()
     {
         z = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
-
-        if (z != 0)
+        x = Input.GetAxisRaw("Horizontal") * speed *Time.deltaTime;
+        
+        //斜め移動
+        if(z != 0 && x != 0)
         {
-            Vector3 moveDirection = transform.forward * z;
-            moveDirection.y = 0f;
-            moveDirection = moveDirection.normalized;
+             // 斜め移動正規化
+        Vector3 moveDirection = (transform.forward * z + transform.right * x).normalized;
+        moveDirection.y = 0f;
 
-            transform.position += moveDirection * speed;
+        transform.position += moveDirection * speed;
+        if (!audioSourceFootSE.isPlaying)
+        {
+            audioSourceFootSE.Play();
+        }   
+            
+        }
+        //縦移動
+         else if (z != 0)
+        {
+            Vector3 moveDirectionZ = transform.forward * z;
+            moveDirectionZ.y = 0f;
+            moveDirectionZ = moveDirectionZ.normalized;
 
-            if (isWalking && !audioSourceFootSE.isPlaying)
+            transform.position += moveDirectionZ * speed;
+            if(!audioSourceFootSE.isPlaying)
             {
-                audioSourceFootSE.Play();
+                 audioSourceFootSE.Play();
             }
+      
+        }
+        //横移動
+        else if (x != 0)
+        {
+            Vector3 moveDirectionX = transform.right * x;
+            moveDirectionX.y = 0f;
+            moveDirectionX = moveDirectionX.normalized;
+
+            transform.position += moveDirectionX * speed;
+            if(!audioSourceFootSE.isPlaying)
+            {
+                 audioSourceFootSE.Play();
+            }
+           
+      
         }
         else
         {
-           audioSourceFootSE.Stop();
+             audioSourceFootSE.Stop();
         }
+        
+       
+        //サウンド再生
+        //  if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        // {
+        //     audioSourceFootSE.Play();
+        //     Debug.Log("ii");
+        // }
+        // else
+        // {   
+        //     Debug.Log("iiiiii");
+        //     audioSourceFootSE.Stop();
+        // }
+
+        //Debug.Log(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && !audioSourceFootSE.isPlaying);
+         
     }
 
      //カーソルロック
     public void UpdateCursorLock()
     {
-        //
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            cursorLock = false;
-        }
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             cursorLock = true;
         }
@@ -149,7 +189,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void Kaityudentou()
     {
-       
+
         // Fキーが押されたら懐中電灯の表示/非表示を切り替える
         if (Input.GetKeyDown(KeyCode.F) && Time.timeScale == 1)
         {
@@ -165,12 +205,42 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
+    public void Setting()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && IsSetting == false && Time.timeScale == 1)
+        {
+
+            //cam.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
+            audioSource.PlayOneShot(Suzu);
+            IsSetting = true;
+            audioSourceFootSE.Stop();
+            Time.timeScale = 0;
+            SettingCanvas.SetActive(true);
+
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && IsSetting == true )
+        {
+
+             //cam.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            IsSetting = false;
+            Time.timeScale = 1;
+            SettingCanvas.SetActive(false);
+        }
+    }
+
     public void pause()
     {
         //とまってる
         if (Input.GetKeyDown(KeyCode.E) && IsPause == false && Time.timeScale == 1)
         {
-           
+
             cam.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -180,12 +250,12 @@ public class PlayerCtrl : MonoBehaviour
             audioSourceFootSE.Stop();
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
-            
-            
+
+
         }
         else if (Input.GetKeyDown(KeyCode.E) && IsPause == true )
         {
-            
+
              cam.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

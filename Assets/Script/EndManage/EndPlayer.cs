@@ -14,7 +14,7 @@ public class EndPlayer : MonoBehaviour
         instance = this;
     }
 
-    public static int endnum;
+    public static int endnum = 3;
     public static bool HasSword = false;
     public static bool HasMagatama = false;
 
