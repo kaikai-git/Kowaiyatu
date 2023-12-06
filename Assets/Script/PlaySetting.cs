@@ -5,14 +5,11 @@ using UnityEngine.UI;
 public class PlaySetting : MonoBehaviour
 {
    [SerializeField] AudioSource[] audioSources;
-   [SerializeField] Slider VolumeSlider;
-   [SerializeField] Slider LightSlider;
-
    private float[] originalVolumes;
 
     void Start()
     {
-        RenderSettings.ambientIntensity = 0f;
+        //RenderSettings.ambientIntensity = 0f;
         originalVolumes = new float[audioSources.Length];
         for (int i = 0; i < audioSources.Length; i++)
         {

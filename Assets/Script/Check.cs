@@ -24,7 +24,7 @@ public class Check : MonoBehaviour
              FootSE.Stop();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            GameMaster.check = false;
+           // GameMaster.check = false;
             gameObject.SetActive(false);
             PlayerCtrl.CamMoveCtrl = 1;   
             Time.timeScale = 1;

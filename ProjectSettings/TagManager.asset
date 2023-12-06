@@ -15,6 +15,7 @@ TagManager:
   - KakusiDore
   - Tansu
   - LockDore
+  - Stair
   layers:
   - Default
   - TransparentFX

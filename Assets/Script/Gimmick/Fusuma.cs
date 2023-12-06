@@ -15,11 +15,6 @@ public class Fusuma : MonoBehaviour
         //audioSource =  GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        Debug.Log(isanim);
-    }
-
     public void SwitchBool()
     {
         if(isanim) isanim = false;
